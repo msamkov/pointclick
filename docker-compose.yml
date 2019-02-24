@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+  db-pointclick:
+    image: postgres:11.1
+    environment:
+    - POSTGRES_USER=pointclick
+    - POSTGRES_PASSWORD=passwordpointclick
+    ports:
+    - 35432:5432
+    expose:
+    - 5432
+    volumes:
+    - db-pointclick-data:/var/lib/postgresql/data/
+    networks:
+    - backend
+
+  pointclick:
+    depends_on:
+    - db-pointclick
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: multicon/pointclick
+    ports:
+    - 8081:8080
+    - 5006:5005
+    expose:
+    - 8080
+    - 5005
+    networks:
+    - backend
+    environment:
+    - SPRING_PROFILES_ACTIVE=prod
+    - SERVER_PORT=8080
+    - SPRING_DATASOURCE_JDBC_URL=jdbc:postgresql://db-pointclick:5432/pointclick
+    - SPRING_DATASOURCE_USERNAME=pointclick
+    - SPRING_DATASOURCE_PASSWORD=passwordpointclick
+    - JAVA_OPTS=-Xmx500m -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+
+
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  db-pointclick-data:

@@ -1,0 +1,25 @@
+logging:
+  path: logs
+  file: logs/pointclick.log
+  level:
+    org.springframework.web: DEBUG
+    ru.multicon: DEBUG
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  datasource:
+    url: jdbc:postgresql://db-pointclick:5432/pointclick
+    username: pointclick
+    password: passwordpointclick
+
+server:
+  port: 8080
+
+
+
