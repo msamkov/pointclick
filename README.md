@@ -25,7 +25,7 @@ POST localhost:8081/pointclick/api/v1/pageclick/
 Ответ
 ```
 {
-  "pageClicks" : 2233,
+  "pageClicks" : 1223,
   "usersUniq"  : 12
 }
 ```
@@ -41,8 +41,8 @@ localhost:8081/pointclick/api/v1/pageclick/statistics?dateStart=2019-02-02T00%3A
 Ответ
 ```
 {
-  "pageClicks" : 2233,
+  "pageClicks" : 313,
   "usersUniq"  : 12,
-  "usersTop" : 22
+  "usersTop" : 2
 }
 ```
